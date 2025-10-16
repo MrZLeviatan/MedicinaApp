@@ -1,6 +1,7 @@
 package co.edu.uniquindio.models.users;
 
 
+import co.edu.uniquindio.models.objects.Alerta;
 import co.edu.uniquindio.models.objects.Cita;
 import co.edu.uniquindio.models.objects.Formula;
 import co.edu.uniquindio.models.tools.Ciudad;
@@ -10,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -48,6 +50,12 @@ public class Paciente extends Persona {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     @Comment("Formulas Medicas asociadas al paciente")
     private List<Formula> formulasMedicas;
+
+    // Relación uno a muchos con Teléfono
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Comment("Alertas asociados al paciente")
+    private List<Alerta> alertas;
+
 
 
     // Método auxiliar para agregar teléfono

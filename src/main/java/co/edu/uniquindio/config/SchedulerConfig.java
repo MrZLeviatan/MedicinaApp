@@ -19,8 +19,8 @@ public class SchedulerConfig {
     private final AgendaService agendaService;
 
 
-    // Tarea programada: Generar las agendas de todos los médicos cada primer día del mes.
-    @Scheduled(cron = "0 0 0 1 * ?") // Se ejecuta a medianoche del primer díá de cada mes
+    // Tarea programada: Generar las agendas de todos los médicos cada primer día de la semana.
+    @Scheduled(cron = "0 0 0 ? * MON") // Se ejecuta todos los lunes a las 00:00
     public void generarAgendaMensual() {
         List<Medico> medicos = medicoRepo.findAll();
         for (Medico medico : medicos) {

@@ -6,12 +6,14 @@ import co.edu.uniquindio.dto.cita.RegistrarCitaDto;
 import co.edu.uniquindio.exceptions.ElementoNoEncontradoException;
 import co.edu.uniquindio.mapper.objects.CitaMapper;
 import co.edu.uniquindio.models.enums.EstadoCita;
+import co.edu.uniquindio.models.enums.TipoAlerta;
 import co.edu.uniquindio.models.objects.Agenda;
 import co.edu.uniquindio.models.objects.Cita;
 import co.edu.uniquindio.models.objects.Formula;
 import co.edu.uniquindio.repository.objects.AgendaRepo;
 import co.edu.uniquindio.repository.objects.CitaRepo;
 import co.edu.uniquindio.service.objects.AgendaService;
+import co.edu.uniquindio.service.objects.AlertaService;
 import co.edu.uniquindio.service.objects.CitasService;
 import co.edu.uniquindio.service.users.MedicoService;
 import co.edu.uniquindio.service.users.PacienteService;
@@ -33,6 +35,7 @@ public class CitaServiceImpl implements CitasService {
     private final AgendaService agendaService;
     private final PacienteService pacienteService;
     private final MedicoService medicoService;
+    private final AlertaService alertaService;
 
 
     @Override
@@ -58,6 +61,10 @@ public class CitaServiceImpl implements CitasService {
         agenda.setActivo(false);
 
         agendaRepo.save(agenda);
+
+        alertaService.crearAlerta(cita.getPaciente(), TipoAlerta.REGISTRO_CITA,
+                "Tu cita fue registrada correctamente para el día " + cita.getAgenda().getDia() + " a las " + cita.getAgenda().getHoraInicio());
+
     }
 
 
@@ -96,8 +103,10 @@ public class CitaServiceImpl implements CitasService {
         // Cambia el estado de la cita EN_REVISION cuando el médico comience con el proceso
         cita.setEstadoCita(EstadoCita.EN_REVISION);
         citaRepo.save(cita);
-    }
 
+        alertaService.crearAlerta(cita.getPaciente(), TipoAlerta.CANCELACION,
+                "Tu cita del " + cita.getAgenda().getDia() + " fue cancelada.");
+    }
 
 
     @Override

@@ -28,16 +28,16 @@ public class AgendaServiceImpl implements AgendaService {
     private final AgendaMapper agendaMapper;
     private final MedicoRepo medicoRepo;
 
-    // Genera automáticamente la agenda mensual de un médico.
+    // Genera automáticamente la agenda semanal de un médico.
     @Override
     public void generarAgendaMensual(Medico medico) {
 
         List<Agenda> agendas = new ArrayList<>();
         LocalDate fechaActual = LocalDate.now();
-        LocalDate finMes = fechaActual.withDayOfMonth(fechaActual.lengthOfMonth()); // Obtiene el fin de mes
+        LocalDate finSemana = fechaActual.plusDays(6); // Fin de la semana
 
-        // Recorremos todos los días del mes desde la fecha actual hasta el fin de mes
-        for (LocalDate fecha = fechaActual; !fecha.isAfter(finMes); fecha = fecha.plusDays(1)){
+        // Recorremos todos los días de la semana desde la fecha actual hasta el fin de semana
+        for (LocalDate fecha = fechaActual; !fecha.isAfter(finSemana); fecha = fecha.plusDays(1)){
 
             // Saltar los domingos
             if (fecha.getDayOfWeek() == DayOfWeek.SUNDAY){
@@ -68,7 +68,7 @@ public class AgendaServiceImpl implements AgendaService {
                 agenda.setActivo(true);
                 agenda.setMedico(medico);
 
-                // Agregamos la agenda a la lista de agendas del mes
+                // Agregamos la agenda a la lista de agendas de la semana
                 agendas.add(agenda);
                 // Pasamos al siguiente bloque de tiempo
                 horaInicio = siguienteHora;
