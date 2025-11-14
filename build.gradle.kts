@@ -20,7 +20,7 @@ repositories {
 java{
     toolchain{
         // Se define la versión de Java a utilizar (Java 22).
-        languageVersion.set(JavaLanguageVersion.of(22))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
