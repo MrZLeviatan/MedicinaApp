@@ -1,5 +1,5 @@
 # Stage 1: Build the project
-FROM gradle:8.3-jdk22 AS build
+FROM gradle:8.3-jdk17 AS build   # JDK 17
 WORKDIR /app
 COPY . .
 RUN gradle clean build --no-daemon
