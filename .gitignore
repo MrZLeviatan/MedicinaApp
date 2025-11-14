@@ -47,5 +47,3 @@ bin/
 *.class
 /.gradle/
 /*/bin/
-/*/build/
-/build/
