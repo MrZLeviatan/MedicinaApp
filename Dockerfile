@@ -1,18 +1,12 @@
-# ==============================================
-# Dockerfile for MedicinaApp Spring Boot Backend
-# ==============================================
-
-# 1. Usa una imagen base de OpenJDK 22
-FROM eclipse-temurin:22-jdk-jammy
-
-# 2. Define el directorio de trabajo dentro del contenedor
+# Stage 1: Build the project
+FROM gradle:8.3-jdk22 AS build
 WORKDIR /app
+COPY . .
+RUN gradle clean build --no-daemon
 
-# 3. Copia el archivo build/libs/*.jar al contenedor
-COPY build/libs/*.jar app.jar
-
-# 4. Expone el puerto donde correrá Spring Boot
+# Stage 2: Run the app
+FROM eclipse-temurin:22-jdk-jammy
+WORKDIR /app
+COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8080
-
-# 5. Comando para ejecutar la app
 ENTRYPOINT ["java", "-jar", "app.jar"]
