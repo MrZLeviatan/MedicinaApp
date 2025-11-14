@@ -87,6 +87,11 @@ public class AgendaServiceImpl implements AgendaService {
                 .orElseThrow(()-> new ElementoNoEncontradoException("Agenda no registrado en el sistema."));
     }
 
+    @Override
+    public AgendaDto obtenerAgendaDtoId(Long idAgenda) throws ElementoNoEncontradoException {
+        return agendaMapper.toDto(obtenerAgendaId(idAgenda));
+    }
+
 
     @Override
     public List<AgendaDto> listarAgendaLibreMedico(Long idMedico) throws ElementoNoEncontradoException {

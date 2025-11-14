@@ -28,7 +28,7 @@ public class MedicoCitaController {
             throws ElementoNoEncontradoException {
 
         List<CitaDto> citas = citasService.obtenerCitasMedico(idMedico);
-        return ResponseEntity.ok().body(new MensajeDto<>(false,citas));
+        return ResponseEntity.ok().body(new MensajeDto<>(false, citas));
     }
 
 
@@ -38,7 +38,7 @@ public class MedicoCitaController {
             throws ElementoNoEncontradoException {
 
         CitaDto citaDto = citasService.obtenerCitaDtoId(idCita);
-        return ResponseEntity.ok().body(new MensajeDto<>(false,citaDto));
+        return ResponseEntity.ok().body(new MensajeDto<>(false, citaDto));
     }
 
 
@@ -47,7 +47,7 @@ public class MedicoCitaController {
     public ResponseEntity<MensajeDto<String>> revisionCita(@RequestBody CambiarEstadoCitaDto dto)
             throws ElementoNoEncontradoException {
         citasService.cambiarEstadoCita(dto);
-        return ResponseEntity.ok().body(new MensajeDto<>(false,"Cita puesta en revision correctamente"));
+        return ResponseEntity.ok().body(new MensajeDto<>(false, "Cita puesta en revision correctamente"));
     }
 
 
@@ -58,7 +58,7 @@ public class MedicoCitaController {
             throws ElementoNoEncontradoException {
         // Registro de fórmula en el servicio
         formulaService.registrarFormula(registroFormulaDto);
-        return ResponseEntity.ok().body(new MensajeDto<>(false,"Formula registrada"));
+        return ResponseEntity.ok().body(new MensajeDto<>(false, "Formula registrada"));
     }
 
 

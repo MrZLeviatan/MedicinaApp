@@ -44,6 +44,9 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
 
+
+        String path = request.getServletPath(); // <-- AGREGAR ESTO
+
         // Se intenta extraer el token del encabezado "Äuthorization"
         String token = getToken(request);
 

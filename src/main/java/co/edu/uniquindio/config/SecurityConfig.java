@@ -54,9 +54,9 @@ public class SecurityConfig {
                                         "/v3/api-docs/swagger-config"
                                 ).permitAll() // Docs públicas
                         .requestMatchers("/api/auth/**").permitAll() // Login público
-                        .requestMatchers("/api/paciente/**").hasAnyAuthority("ROLE_PACIENTE")
+                        .requestMatchers("/api/paciente/**").hasAnyAuthority("ROLE_PACIENTE","ROLE_MEDICO")
                         .requestMatchers("/api/admin/**").hasAnyAuthority("ROLE_ADMIN")
-                        .requestMatchers("/api/medico/**").hasAnyAuthority("ROLE_MEDICO")
+                        .requestMatchers("/api/medico/**").hasAnyAuthority("ROLE_MEDICO","ROLE_PACIENTE")
                         .anyRequest().authenticated() // Resto requiere login
                 )
                 // Manejo de errores de autenticación
@@ -76,7 +76,7 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-                "*"
+                "http://localhost:4200"
         ));
         // Permite solicitudes desde cualquier origen (en producción es mejor restringir esto)
 

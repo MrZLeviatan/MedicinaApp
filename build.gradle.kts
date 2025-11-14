@@ -68,7 +68,9 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
     // Swagger / OpenAPI documentation
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+
+    implementation("org.postgresql:postgresql:42.6.0") // <--- driver PostgreSQL
 
 
     // MapStruct: Mapeo entre DTOs y entidades.

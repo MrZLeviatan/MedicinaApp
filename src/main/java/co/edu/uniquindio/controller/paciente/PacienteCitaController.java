@@ -8,6 +8,7 @@ import co.edu.uniquindio.dto.cita.RegistrarCitaDto;
 import co.edu.uniquindio.dto.especialidad.EspecialidadDto;
 import co.edu.uniquindio.dto.medico.MedicoDto;
 import co.edu.uniquindio.exceptions.ElementoNoEncontradoException;
+import co.edu.uniquindio.models.objects.Agenda;
 import co.edu.uniquindio.service.objects.AgendaService;
 import co.edu.uniquindio.service.objects.CitasService;
 import co.edu.uniquindio.service.users.MedicoService;
@@ -75,6 +76,15 @@ public class PacienteCitaController {
             throws ElementoNoEncontradoException {
         citasService.cancelarCita(dto);
         return ResponseEntity.ok().body(new MensajeDto<>(false,"Cita cancelada correctamente"));
+    }
+
+
+    @GetMapping("/cita/agenda/{idAgenda}")
+    public ResponseEntity<AgendaDto> obtenerAgendaPorId(@PathVariable Long idAgenda)
+            throws ElementoNoEncontradoException {
+
+        AgendaDto agendaDto = agendaService.obtenerAgendaDtoId(idAgenda);
+        return ResponseEntity.ok(agendaDto);
     }
 
 

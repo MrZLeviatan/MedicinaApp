@@ -16,6 +16,8 @@ public interface AgendaService {
     Agenda obtenerAgendaId(Long idAgenda)
             throws ElementoNoEncontradoException;
 
+    AgendaDto obtenerAgendaDtoId(Long idAgenda) throws ElementoNoEncontradoException;
+
     List<AgendaDto> listarAgendaLibreMedico(Long idMedico)
             throws ElementoNoEncontradoException;
 
