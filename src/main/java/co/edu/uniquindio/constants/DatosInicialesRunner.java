@@ -26,6 +26,7 @@ public class DatosInicialesRunner implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
+        /**
 
 
         User adminUser = new User("admin@example.com", "password123", EstadoUser.ACTIVO);
@@ -42,11 +43,6 @@ public class DatosInicialesRunner implements CommandLineRunner {
 
         ciudadRepo.save(ciudad);
 
-
-
-
-
+*/
     }
-
-
 }

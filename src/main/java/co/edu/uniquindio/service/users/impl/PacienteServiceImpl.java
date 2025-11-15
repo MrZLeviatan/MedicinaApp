@@ -75,7 +75,7 @@ public class PacienteServiceImpl implements PacienteService {
 
         paciente.setCiudad(ciudad);
         paciente.setEps(eps);
-        
+
         // Asociar los teléfonos (sin reemplazar la lista)
         if (registrarPacienteDto.telefonos() != null) {
             for (RegistroTelefonoDto telefonoDto : registrarPacienteDto.telefonos()) {
