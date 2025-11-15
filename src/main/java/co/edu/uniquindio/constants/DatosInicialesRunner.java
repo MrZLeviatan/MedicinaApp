@@ -24,6 +24,7 @@ public class DatosInicialesRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
+        /**
         User adminUser = new User("admin@example.com", "password123", EstadoUser.ACTIVO);
 
         Admin admin = new Admin();
@@ -37,6 +38,8 @@ public class DatosInicialesRunner implements CommandLineRunner {
         ciudad.setCiudad("Armenia");
 
         ciudadRepo.save(ciudad);
+         */
     }
+
 
 }
