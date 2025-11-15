@@ -72,26 +72,21 @@ public class SecurityConfig {
     // Configuración de los CORS ( Cross - Origin Resource Sharing )
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        // Configura CORS (Cross-Origin Resource Sharing) para permitir solicitudes desde otros orígenes
-
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-                "http://localhost:4200","https://medicina-app-adb77.web.app"
+                "http://localhost:4200",
+                "https://medicina-app-adb77.web.app"
         ));
-        // Permite solicitudes desde cualquier origen (en producción es mejor restringir esto)
-
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        // Métodos HTTP permitidos
-
+        config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        // Permite cualquier encabezado
+        config.setAllowCredentials(true); // permite cookies/autenticación si es necesario
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-        // Aplica esta configuración a todas las rutas
 
         return source;
     }
+
 
 
     @Bean
