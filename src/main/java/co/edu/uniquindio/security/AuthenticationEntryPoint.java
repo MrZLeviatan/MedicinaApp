@@ -21,6 +21,8 @@ public class AuthenticationEntryPoint  implements org.springframework.security.w
         MensajeDto<String> dto = new MensajeDto<>(true, "No tienes los permisos necesarios para" +
                 " acceder a este recurso");
 
+        System.out.printf("Si ejecuta malditasea");
+
         // Se configura la respuesta HTTP para que sea de tipo JSON y con estado 403 (Prohibido)
         response.setContentType("application/json");
         response.setStatus(403); // Código HTTP 403 - Forbidden
