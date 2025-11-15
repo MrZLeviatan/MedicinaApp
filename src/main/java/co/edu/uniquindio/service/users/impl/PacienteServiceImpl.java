@@ -12,9 +12,12 @@ import co.edu.uniquindio.mapper.users.PacienteMapper;
 import co.edu.uniquindio.models.enums.EstadoUser;
 import co.edu.uniquindio.models.objects.Eps;
 import co.edu.uniquindio.models.objects.Formula;
+import co.edu.uniquindio.models.tools.Ciudad;
 import co.edu.uniquindio.models.tools.Telefono;
 import co.edu.uniquindio.models.users.Paciente;
+import co.edu.uniquindio.repository.objects.EpsRepo;
 import co.edu.uniquindio.repository.users.PacienteRepo;
+import co.edu.uniquindio.repository.utils.CiudadRepo;
 import co.edu.uniquindio.service.utils.EpsService;
 import co.edu.uniquindio.service.users.PacienteService;
 import co.edu.uniquindio.service.utils.PersonaUtilsService;
@@ -37,7 +40,8 @@ public class PacienteServiceImpl implements PacienteService {
     private final PacienteRepo pacienteRepo;
     private final PersonaUtilsService personaUtilsService;
     private final EpsService epsService;
-
+    private final EpsRepo espRepo;
+    private final CiudadRepo ciudadRepo;
 
 
     @Override
@@ -61,11 +65,17 @@ public class PacienteServiceImpl implements PacienteService {
 
         // 3. Asociamos la Eps y la Ciudad al Paciente mediante los ID's
 
-        Eps eps = epsService.encontrarEps(registrarPacienteDto.idEps());
+        Eps eps = new Eps();
+        eps.setNombre("EPS");
+        espRepo.save(eps);
+
+        Ciudad ciudad = new Ciudad();
+        ciudad.setCiudad("Bogota");
+        ciudadRepo.save(ciudad);
+
+        paciente.setCiudad(ciudad);
         paciente.setEps(eps);
-
-        paciente.setCiudad(personaUtilsService.buscarCiudadId(registrarPacienteDto.idCiudad()));
-
+        
         // Asociar los teléfonos (sin reemplazar la lista)
         if (registrarPacienteDto.telefonos() != null) {
             for (RegistroTelefonoDto telefonoDto : registrarPacienteDto.telefonos()) {

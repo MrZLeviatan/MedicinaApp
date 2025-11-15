@@ -9,6 +9,8 @@ import co.edu.uniquindio.repository.utils.CiudadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Component
 public class DatosInicialesRunner implements CommandLineRunner {
@@ -21,10 +23,11 @@ public class DatosInicialesRunner implements CommandLineRunner {
 
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 
 
-        /**
+
         User adminUser = new User("admin@example.com", "password123", EstadoUser.ACTIVO);
 
         Admin admin = new Admin();
@@ -38,7 +41,11 @@ public class DatosInicialesRunner implements CommandLineRunner {
         ciudad.setCiudad("Armenia");
 
         ciudadRepo.save(ciudad);
-         */
+
+
+
+
+
     }
 
 
